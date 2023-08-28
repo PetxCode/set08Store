@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: athletics;
+  src: url(font/Athletics\ Medium.otf);
+}
+
+.athletics {
+  font-family: athletics;
+}
+
+:root {
+  font-family: athletics;
+}
