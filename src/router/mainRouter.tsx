@@ -3,6 +3,7 @@ import Layout from "../components/common/Layout";
 import MainPage from "../pages/MainPage";
 import DetailedPage from "../pages/DetailedPage";
 import CheckOutPage from "../pages/CheckOutPage";
+import Payment from "../pages/Payment";
 
 export const mainRoute = createBrowserRouter([
   {
@@ -15,8 +16,8 @@ export const mainRoute = createBrowserRouter([
       },
       {
         index: true,
-        path: "detail",
-        // element: <DetailedPage />,
+        path: "payment",
+        element: <Payment />,
       },
       {
         index: true,

@@ -1,4 +1,6 @@
 import { FC } from "react";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../global/globalState";
 
 interface iData {
   title: string;
@@ -7,11 +9,12 @@ interface iData {
 }
 
 interface iProps {
-  props: any;
-  setState: React.Dispatch<React.SetStateAction<boolean>>;
+  props?: any;
+  setState?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const DetailedPage: FC<iProps> = ({ props, setState }) => {
+  const dispatch = useDispatch();
   let myData: any = [];
   let star: any = [];
 
@@ -69,10 +72,14 @@ const DetailedPage: FC<iProps> = ({ props, setState }) => {
           </div>
 
           <div>
-            <div className="flex mt-8 border w-[100px] h-[35px] justify-between items-center px-2 ">
-              <button className="text-[25px]">-</button>
-              <div>1</div>
-              <button className="text-[20px]">+</button>
+            <div
+              className="flex mt-8 border w-[150px] h-[40px] justify-center items-center px-2 cursor-pointer hover:bg-red-500 hover:text-white transition-all duration-300 "
+              onClick={() => {
+                dispatch(addToCart(props));
+                setState(false);
+              }}
+            >
+              Add to Cart
             </div>
           </div>
         </div>

@@ -14,17 +14,38 @@ const globalState = createSlice({
     },
 
     addToCart: (state, { payload }) => {
-      const check = state.cart.findIndex((el: any) => el.id === payload.id);
+      const checkCart = state.cart.findIndex((el: any) => {
+        return el.id === payload.id;
+      });
 
-      if (check >= 0) {
-        state.cart[check].qty += 1;
+      if (checkCart >= 0) {
+        state.cart[checkCart].qty += 1;
       } else {
         state.cart.push({ ...payload, qty: 1 });
+      }
+    },
+
+    remove: (state: any, { payload }) => {
+      const removal = state.cart.filter((el: any) => el.id !== payload.id);
+      state.cart = removal;
+    },
+
+    removeQTY: (state, { payload }) => {
+      const itemQTY = state.cart.findIndex((el: any) => {
+        return el.id === payload.id;
+      });
+
+      if (state.cart[itemQTY].qty > 1) {
+        state.cart[itemQTY].qty -= 1;
+      } else if (state.cart[itemQTY].qty === 1) {
+        const removal = state.cart.filter((el: any) => el.id !== payload.id);
+        state.cart = removal;
       }
     },
   },
 });
 
-export const { changeState, addToCart } = globalState.actions;
+export const { changeState, addToCart, remove, removeQTY } =
+  globalState.actions;
 
 export default globalState.reducer;

@@ -12,6 +12,7 @@ const MainPage = () => {
   const [propsState, setPropsState] = useState<{}>({} as any);
   const cart = useSelector((state: any) => state.cart);
 
+  console.log(cart);
   let myData: any = [];
   let star: any = [];
 
@@ -91,9 +92,8 @@ const MainPage = () => {
           ))}
         </div>
       )}
-
       {state && (
-        <div className="fixed top-0 left-0  ">
+        <div className="fixed top-0 left-0 duration-300 transition-all ">
           <DetailedPage props={propsState} setState={setState} />
         </div>
       )}
