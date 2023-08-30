@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { FiShoppingBag } from "react-icons/fi";
 import { MdOutlineVisibility } from "react-icons/md";
 import { useProduct } from "../hooks/useProduct";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../global/globalState";
+import DetailedPage from "./DetailedPage";
 
 const MainPage = () => {
   const dispatch = useDispatch();
+  const [state, setState] = useState<boolean>(false);
+  const [propsState, setPropsState] = useState<{}>({} as any);
   const cart = useSelector((state: any) => state.cart);
+
   let myData: any = [];
   let star: any = [];
 
@@ -27,11 +31,21 @@ const MainPage = () => {
     star.push(myData.join(""));
   });
 
+  const change = (numb: number) => {
+    let x = numb.toString();
+
+    let z = x.split("");
+
+    let numb1: number = z.length - 3;
+    z.splice(numb1, 0, ",");
+
+    return z.join("");
+  };
+
   const { data, isLoading } = useProduct();
 
-  console.log(cart);
   return (
-    <div>
+    <div className="relative">
       {isLoading ? (
         <div>Loading</div>
       ) : (
@@ -45,7 +59,12 @@ const MainPage = () => {
                 />
                 <div className="w-full justify-center flex absolute bottom-3 opacity-0 hover:opacity-100 h-[300px] items-end">
                   <div className="w-[30px] h-[30px] rounded-[50%] bg-white  flex justify-center items-center hover:cursor-pointer hover:bg-[silver] hover:text-white duration-300 transition-all ">
-                    <MdOutlineVisibility />
+                    <MdOutlineVisibility
+                      onClick={() => {
+                        setPropsState(props);
+                        setState(true);
+                      }}
+                    />
                   </div>
                   <div
                     className="w-[30px] h-[30px] rounded-[50%] bg-white ml-3  flex justify-center items-center hover:cursor-pointer hover:bg-[silver] hover:text-white duration-300 transition-all "
@@ -63,11 +82,19 @@ const MainPage = () => {
               </div>
               <div className="w-[200px] px-2 leading-0 ">{props.title}</div>
               <div className="flex items-center mt-2 justify-center w-[250px]">
-                <div className="line-through mr-2 text-[silver] ">₦2,000</div>
-                <div className="text-red-500">₦3,000</div>
+                <div className="line-through mr-2 text-[silver] ">
+                  ₦{change(props.cost + rand(2500, 1200))}
+                </div>
+                <div className="text-red-500">₦{change(props.cost)}</div>
               </div>
             </div>
           ))}
+        </div>
+      )}
+
+      {state && (
+        <div className="fixed top-0 left-0  ">
+          <DetailedPage props={propsState} setState={setState} />
         </div>
       )}
     </div>

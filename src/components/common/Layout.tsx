@@ -15,7 +15,7 @@ const Layout = () => {
           className={`
         w-[${
           toggle ? "calc(100vw-70px)" : "calc(100vw-160px)"
-        }] pl-2 transition-all duration-300
+        }] pl-0 transition-all duration-300
         `}
         >
           <Outlet />

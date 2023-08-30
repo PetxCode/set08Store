@@ -16,7 +16,7 @@ export const mainRoute = createBrowserRouter([
       {
         index: true,
         path: "detail",
-        element: <DetailedPage />,
+        // element: <DetailedPage />,
       },
       {
         index: true,
