@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart, remove, removeQTY } from "../global/globalState";
 import { usePaystackPayment } from "react-paystack";
 import { payForProduct } from "../api/API";
+import Loading from "../components/static/Loading";
 
 const CheckOutPage = () => {
   const cart = useSelector((state: any) => state.cart);
@@ -11,6 +12,8 @@ const CheckOutPage = () => {
   const [state, setState] = useState<number>(0);
   const [stateURL, setStateURL] = useState<string>("");
   const [stateResult, setStateResult] = useState<number | any>();
+
+  const [toggle, setToggle] = useState<boolean>(false);
 
   const change = (numb: number) => {
     let x = numb.toString();
@@ -66,6 +69,7 @@ const CheckOutPage = () => {
   }, [stateURL]);
   return (
     <div>
+      {toggle && <Loading />}
       {cart.length === 0 ? (
         <div>No data in your cart</div>
       ) : (
@@ -193,9 +197,14 @@ const CheckOutPage = () => {
         "
               onClick={() => {
                 console.log(stateResult);
-                payForProduct(stateResult).then((res) => {
-                  setStateURL(res.authorization_url);
-                });
+                setToggle(true);
+                payForProduct(stateResult)
+                  .then((res) => {
+                    setStateURL(res.authorization_url);
+                  })
+                  .then(() => {
+                    setToggle(false);
+                  });
               }}
             >
               Check Out
