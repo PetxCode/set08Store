@@ -5,6 +5,7 @@ import { useProduct } from "../hooks/useProduct";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../global/globalState";
 import DetailedPage from "./DetailedPage";
+import BuildUpLoader from "../components/static/BuildUpLoader";
 
 const MainPage = () => {
   const dispatch = useDispatch();
@@ -48,7 +49,9 @@ const MainPage = () => {
   return (
     <div className="relative">
       {isLoading ? (
-        <div>Loading</div>
+        <div>
+          <BuildUpLoader />
+        </div>
       ) : (
         <div className="flex flex-wrap ml-4 justify-center ">
           {data?.map((props: any) => (
@@ -58,8 +61,8 @@ const MainPage = () => {
                   className="w-[250px] h-[300px] bg-[gray] object-cover "
                   src={props.image}
                 />
-                <div className="w-full justify-center flex absolute bottom-3 opacity-0 hover:opacity-100 h-[300px] items-end">
-                  <div className="w-[30px] h-[30px] rounded-[50%] bg-white  flex justify-center items-center hover:cursor-pointer hover:bg-[silver] hover:text-white duration-300 transition-all ">
+                <div className="w-full justify-center flex absolute bottom-0 pb-3 opacity-0 hover:opacity-100 hover:bg-[rgba(0,0,0,0.2)] transition-all duration-500 h-[300px] items-end">
+                  <div className="w-[30px] h-[30px] rounded-[50%] bg-white  flex justify-center items-center hover:cursor-pointer hover:bg-[#3e3e3e] shadow-md hover:text-white duration-300 transition-all ">
                     <MdOutlineVisibility
                       onClick={() => {
                         setPropsState(props);
@@ -68,7 +71,7 @@ const MainPage = () => {
                     />
                   </div>
                   <div
-                    className="w-[30px] h-[30px] rounded-[50%] bg-white ml-3  flex justify-center items-center hover:cursor-pointer hover:bg-[silver] hover:text-white duration-300 transition-all "
+                    className="w-[30px] h-[30px] rounded-[50%] bg-white ml-3  flex justify-center items-center hover:cursor-pointer hover:bg-[#3e3e3e] hover:text-white duration-300 transition-all shadow-md"
                     onClick={() => {
                       dispatch(addToCart(props));
                     }}

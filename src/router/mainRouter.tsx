@@ -1,9 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "../components/common/Layout";
 import MainPage from "../pages/MainPage";
-import DetailedPage from "../pages/DetailedPage";
 import CheckOutPage from "../pages/CheckOutPage";
 import Payment from "../pages/Payment";
+
+import BuildUpLoader from "../components/static/BuildUpLoader";
 
 export const mainRoute = createBrowserRouter([
   {
@@ -23,6 +24,11 @@ export const mainRoute = createBrowserRouter([
         index: true,
         path: "check-out",
         element: <CheckOutPage />,
+      },
+      {
+        index: true,
+        path: "loading-content",
+        element: <BuildUpLoader />,
       },
     ],
   },
