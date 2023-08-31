@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FiShoppingBag } from "react-icons/fi";
 import { MdOutlineVisibility } from "react-icons/md";
 import { useProduct } from "../hooks/useProduct";

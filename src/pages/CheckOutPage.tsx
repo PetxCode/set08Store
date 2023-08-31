@@ -183,18 +183,28 @@ const CheckOutPage = () => {
 
             <div className="flex justify-between items-center my-4">
               <div>Total</div>
-              <div>₦{change(parseInt(stateResult))}</div>
+              <div>₦{change(stateResult!)}</div>
             </div>
+
             <button
               className="w-full h-[50px] rounded-[30px] bg-red-500 text-white
         hover:bg-red-700 duration-300 transition-all text-[20px]
         "
               onClick={() => {
-                // initializePayment(onSuccess, onClose);
                 console.log(stateResult);
                 payForProduct(stateResult).then((res) => {
                   setStateURL(res.authorization_url);
                 });
+              }}
+            >
+              Check Out
+            </button>
+            <button
+              className="w-full h-[50px] mt-2 rounded-[30px] bg-red-500 text-white
+        hover:bg-red-700 duration-300 transition-all text-[20px]
+        "
+              onClick={() => {
+                initializePayment(onSuccess, onClose);
               }}
             >
               Check Out

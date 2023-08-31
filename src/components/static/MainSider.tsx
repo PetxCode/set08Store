@@ -16,12 +16,15 @@ const MainSider = () => {
     dispatch(changeState(!toggle));
   };
   // ${!toggle ? "160px" : "70px" }
+  // w-[${!toggle ? "160px" : "70px"}]
   return (
     <div>
       <div
-        className={`w-[${
-          !toggle ? "160px" : "70px"
-        }] h-[100vh] bg-purple-100 fixed transition-all duration-300 overflow-hidden `}
+        className={` h-[100vh] bg-purple-100 fixed transition-all duration-300 overflow-hidden z-10 `}
+        style={{
+          width: `${!toggle ? "160px" : "70px"}`,
+          transition: "all 350m",
+        }}
       >
         <div className="w-full justify-center flex mt-8 ">
           {!toggle ? (

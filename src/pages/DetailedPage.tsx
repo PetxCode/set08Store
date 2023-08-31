@@ -2,15 +2,9 @@ import { FC } from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../global/globalState";
 
-interface iData {
-  title: string;
-  image: string;
-  cost: number;
-}
-
 interface iProps {
   props?: any;
-  setState?: React.Dispatch<React.SetStateAction<boolean>>;
+  setState: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const DetailedPage: FC<iProps> = ({ props, setState }) => {
