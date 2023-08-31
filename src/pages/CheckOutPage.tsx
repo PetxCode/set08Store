@@ -10,7 +10,7 @@ const CheckOutPage = () => {
   const dispatch = useDispatch();
   const [state, setState] = useState<number>(0);
   const [stateURL, setStateURL] = useState<string>("");
-  const [stateResult, setStateResult] = useState<number>();
+  const [stateResult, setStateResult] = useState<number | any>();
 
   const change = (numb: number) => {
     let x = numb.toString();
@@ -56,6 +56,7 @@ const CheckOutPage = () => {
   };
   const initializePayment = usePaystackPayment(config);
 
+  const bestResult: any = parseInt(stateResult);
   useEffect(() => {
     if (stateURL === "") {
       return;
@@ -183,7 +184,7 @@ const CheckOutPage = () => {
 
             <div className="flex justify-between items-center my-4">
               <div>Total</div>
-              <div>₦{change(stateResult!)}</div>
+              <div>₦{change(bestResult)}</div>
             </div>
 
             <button
